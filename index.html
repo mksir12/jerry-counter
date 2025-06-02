@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Jerry API</title>
+  <style>
+    body { font-family: sans-serif; text-align: center; padding: 50px; }
+    .counter { font-size: 2em; margin-top: 20px; }
+  </style>
+</head>
+<body>
+  <h1>Welcome to Jerry API</h1>
+  <p>Clean & Powerful Tools for Developers</p>
+  <div class="counter">Total Requests: <span id="count">Loading...</span></div>
+
+  <script>
+    fetch('/counter.json')
+      .then(res => res.json())
+      .then(data => {
+        document.getElementById('count').innerText = data.total;
+      })
+      .catch(() => {
+        document.getElementById('count').innerText = 'Error loading count';
+      });
+  </script>
+</body>
+</html>
