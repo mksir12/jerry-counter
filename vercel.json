@@ -7,7 +7,7 @@
   "crons": [
     {
       "path": "/api/increment",
-      "schedule": "0 0 * * *"  // once per day at midnight UTC
+      "schedule": "0 0 * * *"
     }
   ]
 }
