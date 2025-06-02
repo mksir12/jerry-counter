@@ -1,9 +1,4 @@
 {
-  "functions": {
-    "api/increment.js": {
-      "runtime": "nodejs"
-    }
-  },
   "crons": [
     {
       "path": "/api/increment",
