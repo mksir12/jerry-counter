@@ -1,7 +1,7 @@
 {
   "functions": {
     "api/increment.js": {
-      "runtime": "nodejs18.x"
+      "runtime": "nodejs"
     }
   },
   "crons": [
