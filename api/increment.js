@@ -1,20 +1,18 @@
-// /api/increment.js
 import fs from 'fs';
 import path from 'path';
 
 export default async function handler(req, res) {
-  const filePath = path.resolve('./counter.json');
-  let data = { total: 1000 };
+  const filePath = path.join(process.cwd(), 'counter.json');
 
-  try {
-    if (fs.existsSync(filePath)) {
-      data = JSON.parse(fs.readFileSync(filePath, 'utf8'));
-    }
-    data.total += 1;
-    fs.writeFileSync(filePath, JSON.stringify(data));
-  } catch (error) {
-    return res.status(500).json({ error: 'Failed to update counter' });
+  let counter = 1000;
+  if (fs.existsSync(filePath)) {
+    const raw = fs.readFileSync(filePath);
+    counter = JSON.parse(raw).total || 1000;
   }
 
-  res.status(200).json({ total: data.total });
+  counter += 1;
+
+  fs.writeFileSync(filePath, JSON.stringify({ total: counter }));
+
+  res.status(200).json({ success: true, total: counter });
 }
