@@ -2,17 +2,18 @@ import fs from 'fs';
 import path from 'path';
 
 export default async function handler(req, res) {
-  const filePath = path.join(process.cwd(), 'counter.json');
+  try {
+    const filePath = path.resolve('./counter.json');
+    const fileData = fs.readFileSync(filePath, 'utf8');
+    const json = JSON.parse(fileData);
 
-  let counter = 1000;
-  if (fs.existsSync(filePath)) {
-    const raw = fs.readFileSync(filePath);
-    counter = JSON.parse(raw).total || 1000;
+    json.count += 1;
+
+    fs.writeFileSync(filePath, JSON.stringify(json, null, 2), 'utf8');
+
+    res.status(200).json({ success: true, count: json.count });
+  } catch (error) {
+    console.error('API Error:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
   }
-
-  counter += 1;
-
-  fs.writeFileSync(filePath, JSON.stringify({ total: counter }));
-
-  res.status(200).json({ success: true, total: counter });
 }
