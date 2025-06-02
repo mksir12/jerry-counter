@@ -1,0 +1,13 @@
+{
+  "functions": {
+    "api/increment.js": {
+      "runtime": "nodejs18.x"
+    }
+  },
+  "cron": [
+    {
+      "path": "/api/increment",
+      "schedule": "*/3 * * * *"
+    }
+  ]
+}
