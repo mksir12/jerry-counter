@@ -52,7 +52,7 @@
   <script>
     async function fetchCount() {
       try {
-        const response = await fetch('/api/increment');
+        const response = await fetch('/api/increment.js');
         const data = await response.json();
         if (data.count !== undefined) {
           document.getElementById('requestCount').innerText = data.count;
