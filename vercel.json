@@ -1,8 +1,8 @@
 {
-  "crons": [
+  "builds": [
     {
-      "path": "/api/increment",
-      "schedule": "0 0 * * *"
+      "src": "api/increment.js",
+      "use": "@vercel/node"
     }
   ]
 }
